@@ -28,7 +28,9 @@ curl.request(options, post_data, function(ret) {
 	console.log('Date: ' + result.PSDER.SETTLEMENT_DATE);
 
         //console.log(result.PSDER.TRANSACTION_CURRENCY[0].TRANSACTION_CURRENCY_DTL);
-	var it = result.PSDER.TRANSACTION_CURRENCY[0].TRANSACTION_CURRENCY_DTL;
+	var it = result.PSDER.TRANSACTION_CURRENCY[0].TRANSACTION_CURRENCY_DTL,
+	    save = {};
+
 	for( var index in it ) {
 
 	    var iter = it[index];
@@ -38,10 +40,15 @@ curl.request(options, post_data, function(ret) {
 	    while( i-- ) {
 		if( config.target[i] == iter.ALPHA_CURENCY_CODE ) {
 		    console.log(iter.ALPHA_CURENCY_CODE + ' ' + iter.CONVERSION_RATE);
+		    save[iter.ALPHA_CURENCY_CODE] = iter.CONVERSION_RATE;
 		    break;
 		}
 	    }
         }
+
+	console.log(save);
+
+	
     });
 });
 
