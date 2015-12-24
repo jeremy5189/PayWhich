@@ -48,6 +48,10 @@ curl.request(options, post_data, function(ret) {
 
 	console.log(save);
 
+        var db = require('./db.js'),
+	    moment = require('moment');
+
+	db.insert(config.mysql, save, 'mastercard', moment().format('YYYY-MM-DD H:m:s'));
 	
     });
 });
