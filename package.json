@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jeremy Yen",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "xml2js": "^0.4.15"
+  }
 }

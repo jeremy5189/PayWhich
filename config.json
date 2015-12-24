@@ -1,4 +1,7 @@
 {
+  "target": [
+    "USD", "TWD", "GBP", "EUR", "JPY", "CNY", "HKD", "THB"
+  ],
   "master": {
     "host": "www.mastercard.com",
     "path": "/psder/eu/callPsder.do"
