@@ -1,0 +1,11 @@
+{
+  "name": "payWhich",
+  "version": "1.0.0",
+  "description": "payWhich crontab tool",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeremy Yen",
+  "license": "MIT"
+}
