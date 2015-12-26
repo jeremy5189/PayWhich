@@ -1,6 +1,7 @@
 var config  = require('./config.json'),
     curl    = require('./request.js'),
     parser  = require('xml2js').parseString,
+    moment  = require('moment'),
     options = {
         host: config.master.host,
         port: 443,
@@ -11,8 +12,11 @@ var config  = require('./config.json'),
 	  "Content-Type"  : "application/x-www-form-urlencoded",
 	  "Accept"        : "*/*"
 	}
-    },
-    post_data = 'service=getExchngRateDetails&baseCurrency=EUR&settlementDate=12/23/2015';
+    };
+
+var target_date = moment().subtract(parseInt(process.argv[2]), 'day').format('MM/DD/YYYY');
+console.log('Target date: ' + target_date);
+var post_data = 'service=getExchngRateDetails&baseCurrency=EUR&settlementDate=' + target_date;
 
 options.headers['Content-Length'] = Buffer.byteLength(post_data);
 
@@ -22,7 +26,7 @@ console.log(config.target);
 curl.request(options, post_data, function(ret) {
 
     console.log('MasterCard Currency Exchange Rate');
-
+    console.log(ret);
     parser(ret, function(err, result) {
 
 	console.log('Date: ' + result.PSDER.SETTLEMENT_DATE);
@@ -47,12 +51,12 @@ curl.request(options, post_data, function(ret) {
         }
 
 	console.log(save);
+        if (Object.keys(save).length > 0) {
+	//if(save.length > 0) {
+	        var db = require('./db.js');
 
-        var db = require('./db.js'),
-	    moment = require('moment');
-
-	db.insert(config.mysql, save, 'mastercard', moment().format('YYYY-MM-DD H:m:s'));
-	
+		db.insert(config.mysql, save, 'mastercard', moment().format('YYYY-MM-DD H:m:s'));
+	}
     });
 });
 
