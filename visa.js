@@ -27,7 +27,7 @@ if( process.argv[2] != undefined && process.argv[2] == '-v' )
 
 //options.headers['Content-Length'] = Buffer.byteLength(get_data);
 
-//console.log(options);
+console.log(options);
 
 curl.ping(options, function(ret) {
     console.log(ret);
