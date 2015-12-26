@@ -2,7 +2,8 @@
   "mysql" : {
     "host": "127.0.0.1",
     "user": "payWhich",
-    "pass": ""
+    "pass": "",
+    "db"  : ""
   },
   "target": [
     "USD", "TWD", "GBP", "EUR", "JPY", "CNY", "HKD", "THB"
