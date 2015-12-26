@@ -11,5 +11,9 @@
   "master": {
     "host": "www.mastercard.com",
     "path": "/psder/eu/callPsder.do"
+  },
+  "visa": {
+    "host": "usa.visa.com",
+    "path": "/support/consumer/travel-support/exchange-rate-calculator.html/"
   }
 }
