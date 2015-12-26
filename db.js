@@ -21,14 +21,16 @@ module.exports = {
 
     	sql += ",'" + datetime_arr[1] + "');";
 
-     	console.log(sql);
+     	console.log("\n" + sql);
 
         if(!_debug) {
         	connection.query(sql, function(err, rows, fields) {
         	  if (err) throw err;
         	});
+        } else {
+            console.log('\nWill not insert to DB if debug = ture');
         }
-        
+
     	connection.end();
     }
 }
