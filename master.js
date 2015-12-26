@@ -26,7 +26,7 @@ console.log(config.target);
 curl.request(options, post_data, function(ret) {
 
     console.log('MasterCard Currency Exchange Rate');
-    console.log(ret);
+    
     parser(ret, function(err, result) {
 
 	console.log('Date: ' + result.PSDER.SETTLEMENT_DATE);
@@ -51,11 +51,14 @@ curl.request(options, post_data, function(ret) {
         }
 
 	console.log(save);
-        if (Object.keys(save).length > 0) {
-	//if(save.length > 0) {
+        
+	if (Object.keys(save).length > 0) {
+	 
 	        var db = require('./db.js');
-
-		db.insert(config.mysql, save, 'mastercard', moment().format('YYYY-MM-DD H:m:s'));
+		db.insert(config.mysql, save, 'mastercard', [
+			moment().format('YYYY-MM-DD H:m:s'),
+			result.PSDER.SETTLEMENT_DATE
+		]);
 	}
     });
 });
