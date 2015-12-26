@@ -59,6 +59,9 @@ curl.ping(options, function(ret) {
             re.lastIndex++;
         }
 
+        if(_debug)
+            console.log('Raw output: ' + m[1]);
+
         rate = parseFloat(m[1]);
         if(isNaN(rate)) {
             console.log('Parse Error');
@@ -77,11 +80,13 @@ curl.ping(options, function(ret) {
 
             console.log(rate);
 
-            var db = require('./db.js');
-            db.insert(config.mysql, save, 'visa', [
-                moment().format('YYYY-MM-DD H:m:s'),
-                target_date
-            ], _debug);
+            if(!_debug) {
+                var db = require('./db.js');
+                db.insert(config.mysql, save, 'visa', [
+                    moment().format('YYYY-MM-DD H:m:s'),
+                    target_date
+                ], _debug);
+            }
         }
     }
 });
