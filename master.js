@@ -76,19 +76,15 @@ curl.request(options, post_data, function(ret) {
     	    console.log(save);
         }
 
-    	if (Object.keys(save).length > 0 && !_debug ) {
+    	if (Object.keys(save).length > 0 ) {
 
             var db = require('./db.js');
     		db.insert(config.mysql, save, 'mastercard', [
                 moment().format('YYYY-MM-DD H:m:s'),
     		    result.PSDER.SETTLEMENT_DATE
-    		]);
+    		], _debug);
 
-    	} else if( _debug ) {
-
-            console.log('\nWill not insert to DB if debug = ture');
-
-        } else {
+    	} else {
 
             console.log('\nNo data to insert');
 

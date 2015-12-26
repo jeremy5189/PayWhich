@@ -1,6 +1,6 @@
 module.exports = {
 
-    insert: function(config, data, table, datetime_arr) {
+    insert: function(config, data, table, datetime_arr, _debug) {
 
     	var mysql      = require('mysql');
     	var connection = mysql.createConnection({
@@ -20,12 +20,15 @@ module.exports = {
     	}
 
     	sql += ",'" + datetime_arr[1] + "');";
+
      	console.log(sql);
 
-    	connection.query(sql, function(err, rows, fields) {
-    	  if (err) throw err;
-    	});
-
+        if(!_debug) {
+        	connection.query(sql, function(err, rows, fields) {
+        	  if (err) throw err;
+        	});
+        }
+        
     	connection.end();
     }
 }
