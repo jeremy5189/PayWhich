@@ -27,7 +27,7 @@ var get_data = 'fromCurr=TWDNew+Taiwan+Dollar&toCurr=EUREuro&fee=0&exchangedate=
 
 options.headers['Content-Length'] = Buffer.byteLength(get_data);
 
-//console.log(options);
+console.log(options);
 
 curl.request(options, get_data, function(ret) {
     console.log(ret);
