@@ -9,26 +9,79 @@ var config  = require('./config.json'),
         method: 'GET',
     	headers: {
             'Accept': 'text/html',
-            'Accept-Encoding': 'gzip, deflate, sdch',
             'Accept-Language': 'zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4',
             'Cache-Control':   'max-age=0',
             'Connection':      'keep-alive',
             'Host':            'usa.visa.com',
             'Upgrade-Insecure-Requests': '1',
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
     	}
     };
 
+// Check arg 1
+if( process.argv[2] == undefined || isNaN(parseInt(process.argv[2])) ) {
+    console.log('Usage: nodejs visa.js [minus_day] [-v]');
+    process.exit(0);
+}
+
 // Check arg 2
-if( process.argv[2] != undefined && process.argv[2] == '-v' )
+if( process.argv[3] != undefined && process.argv[3] == '-v' )
     _debug = true;
 
-//var get_data = 'fromCurr=TWDNew+Taiwan+Dollar&toCurr=EUREuro&fee=0&exchangedate=12%2F26%2F2015&submitButton.x=108&submitButton.y=7&submitButton=Calculate+Exchange+Rates';
+var target_date = moment().subtract(parseInt(process.argv[2]), 'days').format('MM/DD/YYYY');
+    get_data =  '?fromCurr=TWDNew+Taiwan+Dollar&' +
+                'toCurr=EUREuro&' +
+                'fee=0&' +
+                'exchangedate=' + encodeURIComponent(target_date) + '&' +
+                'submitButton.x=108&' +
+                'submitButton.y=7&' +
+                'submitButton=Calculate+Exchange+Rates';
 
-//options.headers['Content-Length'] = Buffer.byteLength(get_data);
+options.path += get_data;
 
-console.log(options);
+console.log('Target date: ' + target_date);
+
+if(_debug) {
+    console.log('\nGet data: ');
+    console.log(get_data);
+    console.log('\nHTTP options: ');
+    console.log(options);
+}
 
 curl.ping(options, function(ret) {
-    console.log(ret);
+
+    if(_debug)
+        console.log(ret);
+
+    var rate, m, re = /.*Euro = <strong>([0-9]*\.[0-9]+|[0-9]+).*/;
+
+    if ((m = re.exec(ret)) !== null) {
+        if (m.index === re.lastIndex) {
+            re.lastIndex++;
+        }
+
+        rate = parseFloat(m[1]);
+        if(isNaN(rate)) {
+            console.log('Parse Error');
+        }
+        else {
+
+            var save = {
+              CNY: null,
+              GBP: null,
+              HKD: null,
+              JPY: null,
+              THB: null,
+              TWD: rate,
+              USD: null,
+            };
+
+            console.log(rate);
+
+            var db = require('./db.js');
+            db.insert(config.mysql, save, 'visa', [
+                moment().format('YYYY-MM-DD H:m:s'),
+                target_date
+            ], _debug);
+        }
+    }
 });
