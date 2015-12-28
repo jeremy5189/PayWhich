@@ -4,7 +4,7 @@ var config  = require('./config.json'),
     _debug  = false,
     options = {
         host: config.visa.host,
-        port: 443,
+        port: config.visa.port,
         path: config.visa.path,
         method: 'GET',
     	headers: {
@@ -47,7 +47,7 @@ if(_debug) {
     console.log(options);
 }
 
-curl.ping(options, function(ret) {
+curl.ping(config.visa.protocal, options, function(ret) {
 
     if(_debug)
         console.log(ret);

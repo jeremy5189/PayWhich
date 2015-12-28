@@ -5,7 +5,7 @@ var config  = require('./config.json'),
     _debug  = false,
     options = {
         host: config.master.host,
-        port: 443,
+        port: config.master.port,
         path: config.master.path,
         method: 'POST',
     	headers: {
@@ -39,7 +39,7 @@ if(_debug) {
     console.log(config.target);
 }
 
-curl.request(options, post_data, function(ret) {
+curl.request(config.master.protocal, options, post_data, function(ret) {
 
     if(_debug) {
         console.log('\nRetrived MasterCard Currency Exchange Rate: ');

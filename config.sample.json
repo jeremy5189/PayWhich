@@ -9,11 +9,21 @@
     "USD", "TWD", "GBP", "EUR", "JPY", "CNY", "HKD", "THB"
   ],
   "master": {
+    "protocal": "https",
+    "port": 443,
     "host": "www.mastercard.com",
     "path": "/psder/eu/callPsder.do"
   },
   "visa": {
+    "protocal": "https",
+    "port": 443,
     "host": "usa.visa.com",
     "path": "/support/consumer/travel-support/exchange-rate-calculator.html/"
+  },
+  "jcb": {
+    "protocal": "http",
+    "port": 80,
+    "host": "www.jcb.jp",
+    "path": "/rate/testrate/"
   }
 }

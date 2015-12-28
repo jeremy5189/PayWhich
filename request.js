@@ -1,8 +1,8 @@
 module.exports = {
 
-    ping: function(options, callback) {
+    ping: function(protocal, options, callback) {
 
-        var https = require('https');
+        var https = require(protocal);
 
         var req = https.request(options, function(res) {
             res.setEncoding('utf8');
@@ -14,9 +14,9 @@ module.exports = {
         req.end();
     },
 
-    request: function(options, data, callback) {
+    request: function(protocal, options, data, callback) {
 
-        var https = require('https');
+        var https = require(protocal);
         var req  = https.request(options, function(res) {
             res.setEncoding('utf8');
             res.on('data', function(chunk) {
