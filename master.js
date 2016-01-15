@@ -55,8 +55,8 @@ curl.request(config.master.protocal, options, post_data, function(ret) {
 
     parser(ret, function(err, result) {
 
-        if(_debug)
-    	   console.log('\nParsed! MC Date: ' + result.PSDER.SETTLEMENT_DATE);
+        //if(_debug)
+    	console.log('\nParsed! MC Date: ' + result.PSDER.SETTLEMENT_DATE);
 
     	var it = result.PSDER.TRANSACTION_CURRENCY[0].TRANSACTION_CURRENCY_DTL,
     	    save = {};
@@ -82,6 +82,8 @@ curl.request(config.master.protocal, options, post_data, function(ret) {
             console.log("\nPending array: ");
     	    console.log(save);
         }
+
+        console.log("1 " + base_currency + " = " + save['TWD'] + ' NTD');
 
     	if (Object.keys(save).length > 0 ) {
 
