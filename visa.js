@@ -35,7 +35,7 @@ if( process.argv[4] != undefined && process.argv[4] == '-v' )
 
 var target_date = moment().subtract(parseInt(process.argv[2]), 'days').format('MM/DD/YYYY');
     get_data =  '?fromCurr=TWDNew+Taiwan+Dollar&' +
-                'toCurr=' + encodeURIComponent(config.map.visa[base_currency]) + '&' +
+                'toCurr=' + space_to_plus(config.map.visa[base_currency]) + '&' +
                 'fee=0&' +
                 'exchangedate=' + encodeURIComponent(target_date) + '&' +
                 'submitButton.x=108&' +
@@ -55,7 +55,10 @@ if(_debug) {
 
 curl.ping(config.visa.protocal, options, function(ret) {
 
-    var NTD, m, re = /.*Euro = <strong>([0-9]*\.[0-9]+|[0-9]+).*/;
+    if(_debug)
+        console.log(ret);
+
+    var NTD, m, re = /.* = <strong>([0-9]*\.[0-9]+|[0-9]+).*/;
 
     if ((m = re.exec(ret)) !== null) {
         if (m.index === re.lastIndex) {
@@ -87,3 +90,8 @@ curl.ping(config.visa.protocal, options, function(ret) {
         }
     }
 });
+
+
+function space_to_plus(str) {
+    return str.replace(/ /gi, "+");
+}
