@@ -35,16 +35,13 @@
           "JPY": "JPYJapanese Yen",
           "HKD": "HKDHong Kong Dollar",
           "CNY": "CNYChina Yuan Renminbi",
-          "KRW": "KRWSouth Korea Won",
           "GBP": "GBPBritish Pound",
           "CHF": "CHFSwiss Franc",
           "SEK": "SEKSwedish Krona",
           "AUD": "AUDAustralian Dollar",
           "SGD": "SGDSingapore Dollar",
           "CAD": "CADCanadian Dollar",
-          "THB": "THBThai Baht",
-          "MOP": "MOPMacau Pataca",
-          "KRW": "KRWSouth Korea Won"
+          "THB": "THBThai Baht"
         }
     }
 }
