@@ -22,12 +22,13 @@ foreach($list as $int_org) {
     $sth->execute(array($int_org));
 
     while( $result = $sth->fetch(PDO::FETCH_OBJ) ) {
+
         $json[$int_org][$result->base_currency] = array(
             'NTD' => $result->TWD
         );
-    }
 
-    $json[$int_org]['date'] = $result->settle_date;
+        $json[$int_org]['date'] = $result->settle_date;
+    }
 }
 
 echo $_GET['callback'] . '(' . json_encode($json) . ')';
