@@ -15,35 +15,41 @@ var config  = require('./config.json'),
     	}
     };
 
-// Check arg 1
+// Check arg 1: minus_day
 if( process.argv[2] == undefined || isNaN(parseInt(process.argv[2])) ) {
-    console.log('Usage: nodejs master.js [minus_day] [-v]');
+    console.log('Usage: nodejs master.js [minus_day] [base_currency] {-v}');
     process.exit(0);
 }
 
-// Check arg 2
-if( process.argv[3] != undefined && process.argv[3] == '-v' )
+var base_currency = 'EUR';
+
+// Check arg 2: base_currency
+if( process.argv[3] != undefined )
+    base_currency = process.argv[3];
+
+// Check arg 3: -v
+if( process.argv[4] != undefined && process.argv[4] == '-v' )
     _debug = true;
 
 var target_date = moment().subtract(parseInt(process.argv[2]), 'day').format('MM/DD/YYYY'),
-    post_data = 'service=getExchngRateDetails&baseCurrency=EUR&settlementDate=' + target_date;
+    post_data = 'service=getExchngRateDetails&baseCurrency=' + base_currency +
+                '&settlementDate=' + target_date;
 
-console.log('Target date (Today - ' + process.argv[2] + '): ' + target_date);
+console.log("============= PayWhich VISA curreny tool =============");
+console.log('\nTarget date (Today - ' + process.argv[2] + '): ' + target_date);
 
 options.headers['Content-Length'] = Buffer.byteLength(post_data);
 
 if(_debug) {
     console.log("\nHTTP Post Options:");
     console.log(options);
-    console.log("\nTarget Curreny List:");
-    console.log(config.target);
 }
 
 curl.request(config.master.protocal, options, post_data, function(ret) {
 
     if(_debug) {
         console.log('\nRetrived MasterCard Currency Exchange Rate: ');
-        console.log(ret);
+        //console.log(ret);
     }
 
     parser(ret, function(err, result) {
@@ -79,9 +85,12 @@ curl.request(config.master.protocal, options, post_data, function(ret) {
     	if (Object.keys(save).length > 0 ) {
 
             var db = require('./db.js');
-    		db.insert(config.mysql, save, 'mastercard', [
+    		db.insert(config.mysql, [
+                'mastercard',
+                result.PSDER.SETTLEMENT_DATE,
+                base_currency,
+                save['TWD'],
                 moment().format('YYYY-MM-DD H:m:s'),
-    		    result.PSDER.SETTLEMENT_DATE
     		], _debug);
 
     	} else {
