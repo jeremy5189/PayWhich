@@ -37,11 +37,11 @@ var target_date = moment().subtract(parseInt(process.argv[2]), 'day').format('MM
 
 console.log("============= PayWhich MasterCard currency tool =============");
 console.log('\nTarget date (Today - ' + process.argv[2] + '): ' + target_date);
+console.log("Base Currency: " + base_currency);
 
 options.headers['Content-Length'] = Buffer.byteLength(post_data);
 
 if(_debug) {
-    console.log("Base Currency: " + base_currency);
     console.log("\nHTTP Post Options:");
     console.log(options);
 }
