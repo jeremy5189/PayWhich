@@ -6,6 +6,7 @@
         "db"  : "paywhich",
         "tbl" : "paywhich"
     },
+    "path": "",
     "target": [
         "TWD"
     ],
