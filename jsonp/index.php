@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json");
 date_default_timezone_set("Asia/Taipei");
-include('../include/config.php');
+include('../../include/config.php');
 
 $json = array(
     'visa' => array(
@@ -13,7 +13,6 @@ $json = array(
 );
 
 $link = new PDO(CONNECT_STR, DB_USER, DB_PASS);
-
 $list = array('visa', 'mastercard');
 
 foreach($list as $int_org) {
