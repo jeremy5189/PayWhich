@@ -30,6 +30,7 @@ module.exports = {
 
         	connection.query(sql, function(err, rows, fields) {
         	  if (err) throw err;
+              console.log("Insert success");
         	});
 
             connection.end();

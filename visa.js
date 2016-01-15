@@ -44,7 +44,7 @@ var target_date = moment().subtract(parseInt(process.argv[2]), 'days').format('M
 
 options.path += get_data;
 
-console.log("============= PayWhich VISA curreny tool =============");
+console.log("============= PayWhich VISA currency tool =============");
 console.log('\nTarget date: ' + target_date);
 
 if(_debug) {
@@ -83,7 +83,7 @@ curl.ping(config.visa.protocal, options, function(ret) {
                 NTD,
                 moment().format('YYYY-MM-DD H:m:s')
             ], _debug);
-            
+
         }
     }
 });

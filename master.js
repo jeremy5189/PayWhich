@@ -35,12 +35,13 @@ var target_date = moment().subtract(parseInt(process.argv[2]), 'day').format('MM
     post_data = 'service=getExchngRateDetails&baseCurrency=' + base_currency +
                 '&settlementDate=' + target_date;
 
-console.log("============= PayWhich VISA curreny tool =============");
+console.log("============= PayWhich MasterCard currency tool =============");
 console.log('\nTarget date (Today - ' + process.argv[2] + '): ' + target_date);
 
 options.headers['Content-Length'] = Buffer.byteLength(post_data);
 
 if(_debug) {
+    console.log("Base Currency: " + base_currency);
     console.log("\nHTTP Post Options:");
     console.log(options);
 }
