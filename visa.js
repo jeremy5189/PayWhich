@@ -35,7 +35,7 @@ if( process.argv[4] != undefined && process.argv[4] == '-v' )
 
 var target_date = moment().subtract(parseInt(process.argv[2]), 'days').format('MM/DD/YYYY');
     get_data =  '?fromCurr=TWDNew+Taiwan+Dollar&' +
-                'toCurr=' + config.map.visa[base_currency] + '&' +
+                'toCurr=' + encodeURIComponent(config.map.visa[base_currency]) + '&' +
                 'fee=0&' +
                 'exchangedate=' + encodeURIComponent(target_date) + '&' +
                 'submitButton.x=108&' +
