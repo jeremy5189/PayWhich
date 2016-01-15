@@ -1,6 +1,6 @@
 module.exports = {
 
-    insert: function(config, data, table, datetime_arr, _debug) {
+    insert: function(config, data_arr, _debug) {
 
     	var mysql      = require('mysql');
     	var connection = mysql.createConnection({
@@ -10,27 +10,32 @@ module.exports = {
     	  database : config.db
     	});
 
-    	connection.connect();
-     	var sql = 'INSERT INTO `' + table + '` (`datetime`, `CNY`, `GBP`, `HKD`, `JPY`, `THB`, `TWD`, `USD`, `settle_date`) VALUES (';
+        var sql = "INSERT INTO "
+                  + config.tbl
+                  + " (`int_org`, `settle_date`, `base_currency`, `TWD`, `created_at`) VALUES (?, ?, ?, ?, ?)";
 
-    	sql += "'" + datetime_arr[0] + "'";
+        sql = mysql.format(sql, data_arr);
 
-    	for( var i in data ) {
-    	  sql += ",'" + data[i] + "'";
-    	}
-
-    	sql += ",'" + datetime_arr[1] + "');";
-
-     	console.log("\n" + sql);
+        if(_debug) {
+            console.log('SQL Data: ');
+            console.log(data_arr);
+            console.log(sql);
+        }
 
         if(!_debug) {
+
+            console.log('Prepare to connect');
+
+            connection.connect();
+
         	connection.query(sql, function(err, rows, fields) {
         	  if (err) throw err;
         	});
+
+            connection.end();
+
         } else {
             console.log('\nWill not insert to DB if debug = ture');
         }
-
-    	connection.end();
     }
 }

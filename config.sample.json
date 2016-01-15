@@ -1,29 +1,49 @@
 {
-  "mysql" : {
-    "host": "127.0.0.1",
-    "user": "payWhich",
-    "pass": "",
-    "db"  : ""
-  },
-  "target": [
-    "USD", "TWD", "GBP", "EUR", "JPY", "CNY", "HKD", "THB"
-  ],
-  "master": {
-    "protocal": "https",
-    "port": 443,
-    "host": "www.mastercard.com",
-    "path": "/psder/eu/callPsder.do"
-  },
-  "visa": {
-    "protocal": "https",
-    "port": 443,
-    "host": "usa.visa.com",
-    "path": "/support/consumer/travel-support/exchange-rate-calculator.html/"
-  },
-  "jcb": {
-    "protocal": "http",
-    "port": 80,
-    "host": "www.jcb.jp",
-    "path": "/rate/testrate/"
-  }
+    "mysql" : {
+        "host": "127.0.0.1",
+        "user": "",
+        "pass": "",
+        "db"  : "paywhich",
+        "tbl" : "paywhich"
+    },
+    "target": [
+        "TWD"
+    ],
+    "master": {
+        "protocal": "https",
+        "port": 443,
+        "host": "www.mastercard.com",
+        "path": "/psder/eu/callPsder.do"
+    },
+    "visa": {
+        "protocal": "https",
+        "port": 443,
+        "host": "usa.visa.com",
+        "path": "/support/consumer/travel-support/exchange-rate-calculator.html/"
+    },
+    "jcb": {
+        "protocal": "http",
+        "port": 80,
+        "host": "www.jcb.jp",
+        "path": "/rate/testrate/"
+    },
+    "map": {
+      "visa": {
+          "EUR": "EUREuro",
+          "USD": "USDUnited States Dollar",
+          "JPY": "JPYJapanese Yen",
+          "HKD": "HKDHong Kong Dollar",
+          "CNY": "CNYChina Yuan Renminbi",
+          "KRW": "KRWSouth Korea Won",
+          "GBP": "GBPBritish Pound",
+          "CHF": "CHFSwiss Franc",
+          "SEK": "SEKSwedish Krona",
+          "AUD": "AUDAustralian Dollar",
+          "SGD": "SGDSingapore Dollar",
+          "CAD": "CADCanadian Dollar",
+          "THB": "THBThai Baht",
+          "MOP": "MOPMacau Pataca",
+          "KRW": "KRWSouth Korea Won"
+        }
+    }
 }
