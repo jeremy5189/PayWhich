@@ -1,3 +1,14 @@
+/* -----------------------------------------------------------
+ *
+ *  PayWhich Currency Bot - Database Helper
+ *  Author: Jeremy Yen (jeremy5189@gmail.com)
+ *  License: MIT
+ *  Repo: https://github.com/jeremy5189/payWhich
+ *  Production: http://paywhich.pw
+ *
+ * -----------------------------------------------------------
+ */
+
 module.exports = {
 
     insert: function(config, data_arr, _debug) {

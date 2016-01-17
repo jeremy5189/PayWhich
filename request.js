@@ -1,3 +1,14 @@
+/* -----------------------------------------------------------
+ *
+ *  PayWhich Currency Bot - HTTP Request helper
+ *  Author: Jeremy Yen (jeremy5189@gmail.com)
+ *  License: MIT
+ *  Repo: https://github.com/jeremy5189/payWhich
+ *  Production: http://paywhich.pw
+ *
+ * -----------------------------------------------------------
+ */
+
 module.exports = {
 
     ping: function(protocal, options, callback) {
