@@ -105,7 +105,7 @@ curl.request(config.master.protocal, options, post_data, function(ret) {
                 result.PSDER.SETTLEMENT_DATE,
                 base_currency,
                 save['TWD'],
-                moment().format('YYYY-MM-DD H:m:s'),
+                moment().format('YYYY-MM-DD HH:mm:ss'),
     		], _debug);
 
     	} else {

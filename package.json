@@ -9,6 +9,7 @@
   "author": "Jeremy Yen",
   "license": "MIT",
   "dependencies": {
+    "common-node": "^0.10.20",
     "moment": "^2.10.6",
     "mysql": "^2.10.0",
     "xml2js": "^0.4.15"

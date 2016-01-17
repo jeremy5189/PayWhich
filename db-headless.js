@@ -21,5 +21,5 @@ db.insert(config.mysql, [
     process.argv[3], // target_date, // settle_date
     process.argv[4], // base_currency,
     process.argv[5], // NTD,
-    process.argv[6]  // moment().format('YYYY-MM-DD H:m:s')
+    process.argv[6]  // moment().format('YYYY-MM-DD HH:mm:ss')
 ], false);
