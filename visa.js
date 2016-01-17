@@ -19,12 +19,14 @@ var config  = require('./config.json'),
         path: config.visa.path,
         method: 'GET',
     	headers: {
-            'Accept': 'text/html',
-            'Accept-Language': 'zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4',
-            'Cache-Control':   'max-age=0',
+            'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Encoding': 'deflate',
+            'Accept-Language': 'zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4,zh-CN;q=0.2,nb;q=0.2',
+            'Cache-Control'  : 'no-cache',
             'Connection':      'keep-alive',
             'Host':            'usa.visa.com',
-            'Upgrade-Insecure-Requests': '1'
+            'Pragma':          'no-cache',
+            'User-Agent':      config.visa.user_agent,
     	}
     };
 
@@ -46,11 +48,11 @@ if( process.argv[4] != undefined && process.argv[4] == '-v' )
 
 var target_date = moment().subtract(parseInt(process.argv[2]), 'days').format('MM/DD/YYYY');
     get_data =  '?fromCurr=TWDNew+Taiwan+Dollar&' +
-                'toCurr=' + space_to_plus(config.map.visa[base_currency]) + '&' +
+                'toCurr=' + config.map.visa[base_currency].replace(/ /gi, "+") + '&' +
                 'fee=0&' +
                 'exchangedate=' + encodeURIComponent(target_date) + '&' +
-                'submitButton.x=108&' +
-                'submitButton.y=7&' +
+                'submitButton.x=109&' +
+                'submitButton.y=5&' +
                 'submitButton=Calculate+Exchange+Rates';
 
 options.path += get_data;
@@ -101,8 +103,3 @@ curl.ping(config.visa.protocal, options, function(ret) {
         }
     }
 });
-
-
-function space_to_plus(str) {
-    return str.replace(/ /gi, "+");
-}

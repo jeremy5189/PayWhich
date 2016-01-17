@@ -22,7 +22,8 @@ var config  = require('./config.json'),
     	headers: {
     	  "Content-Length": 0,
     	  "Content-Type"  : "application/x-www-form-urlencoded",
-    	  "Accept"        : "*/*"
+    	  "Accept"        : "*/*",
+          "User-Agent"    : config.master.user_agent
     	}
     };
 
