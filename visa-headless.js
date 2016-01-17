@@ -54,6 +54,8 @@ page.open(url, function (status) {
         if(_debug)
             console.log('PhantomJS Fail!');
 
+        page.close();
+        phantom.exit();
     }
     else {
 
@@ -72,14 +74,63 @@ page.open(url, function (status) {
         var NTD = parseFloat(data.split(' ')[3]);
 
         if( isNaN(NTD) ) {
-            console.log('Parse Float Error!');
+
+            if(_debug)
+                console.log('Parse Float Error!');
+
+            page.close();
+            phantom.exit();
+
         } else {
 
-            console.log('Parse Successed');
+            if(_debug)
+                console.log('Parse Successed');
 
+            var childProcess,
+                cmd_args = [
+                    config.path + "db-headless.js",
+                    'visa',
+                    target_date,
+                    base_currency ,
+                    NTD,
+                    moment().format('YYYY-MM-DD HH:mm:ss')
+                ];
+
+            //if(_debug)
+            console.log(cmd_args);
+
+            try {
+                childProcess = require("child_process");
+            } catch (e) {
+
+                if(_debug) {
+                    console.log('child_process error');
+                    console.log(e);
+                }
+
+                page.close();
+                phantom.exit();
+            }
+            if (childProcess) {
+                childProcess.execFile(config.node_bin, cmd_args, null, function (err, stdout, stderr) {
+
+                    if(_debug) {
+                        console.log("execFileSTDOUT: " + JSON.stringify(stdout));
+                        console.log("execFileSTDERR: " + JSON.stringify(stderr));
+                    }
+
+                    page.close();
+                    phantom.exit();
+                });
+
+                console.log("Done DB Exec");
+
+            } else {
+
+                console.log("Unable to require child process");
+                page.close();
+                phantom.exit();
+            }
         }
-
     }
-    page.close();
-    phantom.exit();
 });

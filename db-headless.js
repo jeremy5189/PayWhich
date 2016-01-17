@@ -14,6 +14,7 @@ var db     = require('./db.js'),
 
 if( process.argv.length < 7 ) {
     console.log("Usage: node db-headless.js [int_org] [target_date] [base_currency] [NTD] [server_date]");
+    process.exit();
 }
 
 db.insert(config.mysql, [

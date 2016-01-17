@@ -8,6 +8,7 @@
     },
     "path": "",
     "node_bin": "/usr/local/bin/node",
+    "phantomjs_bin": "",
     "target": [
         "TWD"
     ],
