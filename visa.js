@@ -97,7 +97,8 @@ curl.ping(config.visa.protocal, options, function(ret) {
                 target_date, // settle_date
                 base_currency,
                 NTD,
-                moment().format('YYYY-MM-DD HH:mm:ss')
+                moment().format('YYYY-MM-DD HH:mm:ss'),
+                '{}' // Empty json
             ], _debug);
 
         }

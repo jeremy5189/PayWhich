@@ -106,6 +106,7 @@ curl.request(config.master.protocal, options, post_data, function(ret) {
                 base_currency,
                 save['TWD'],
                 moment().format('YYYY-MM-DD HH:mm:ss'),
+                '{}'
     		], _debug);
 
     	} else {

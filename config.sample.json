@@ -30,7 +30,7 @@
         "protocal": "http",
         "port": 80,
         "host": "www.jcb.jp",
-        "path": "/rate/testrate/"
+        "path": "/uploads/%s.csv"
     },
     "map": {
       "visa": {

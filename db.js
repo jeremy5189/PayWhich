@@ -23,7 +23,7 @@ module.exports = {
 
         var sql = "INSERT INTO "
                   + config.tbl
-                  + " (`int_org`, `settle_date`, `base_currency`, `TWD`, `created_at`) VALUES (?, ?, ?, ?, ?)";
+                  + " (`int_org`, `settle_date`, `base_currency`, `TWD`, `created_at`, `json`) VALUES (?, ?, ?, ?, ?, ?)";
 
         sql = mysql.format(sql, data_arr);
 

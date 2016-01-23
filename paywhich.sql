@@ -8,5 +8,6 @@ CREATE TABLE `paywhich` (
   `base_currency` varchar(6) DEFAULT NULL,
   `TWD` float unsigned DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `json` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8;
