@@ -27,9 +27,10 @@ if( process.argv[3] == '--nocron' ) {
     _cron = false;
 }
 
+var cron = '';
+
 for( var cur in config.map.visa) {
 
-    var cron = '';
     if( _cron ) {
         cron = min + ' 0,6,12,18 * * * ';
     }
@@ -47,3 +48,6 @@ for( var cur in config.map.visa) {
 
     min++;
  }
+
+console.log('\n# JCB');
+console.log(cron + config.node_bin + ' ' + config.path + 'jcb.js 1');
