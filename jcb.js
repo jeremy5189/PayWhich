@@ -1,3 +1,14 @@
+/* -----------------------------------------------------------
+ *
+ *  PayWhich JCB Currency Bot
+ *  Author: Jeremy Yen (jeremy5189@gmail.com)
+ *  License: MIT
+ *  Repo: https://github.com/jeremy5189/payWhich
+ *  Production: http://paywhich.pw
+ *
+ * -----------------------------------------------------------
+ */
+
 var config  = require('./config.json'),
     curl    = require('./request.js'),
     moment  = require('moment'),
