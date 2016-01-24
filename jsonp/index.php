@@ -37,7 +37,7 @@ foreach($list as $int_org) {
         );
 
         $json[$int_org]['date'] = $result->settle_date;
-        $json[$ini_org]['length']++;
+        $json[$int_org]['length']++;
     }
 }
 
@@ -59,7 +59,7 @@ foreach( $data as $cur => $val ) {
         'NTD' => floatval($data->TWD) / floatval($val) // Using NTD
     );
 
-    $json[$ini_org]['length']++;
+    $json['jcb']['length']++;
 }
 
 $json['jcb']['date'] = $result->settle_date;
