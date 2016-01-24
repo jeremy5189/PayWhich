@@ -63,8 +63,10 @@ foreach( $data as $cur => $val ) {
 }
 
 $json['jcb']['USD'] = array(
-    'NTD' => $data->TWD
+    'NTD' => floatval($data->TWD)
 );
+
+$json['jcb']['length']++;
 $json['jcb']['date'] = $result->settle_date;
 
 echo $_GET['callback'] . '(' . json_encode($json) . ')';
