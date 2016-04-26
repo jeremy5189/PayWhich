@@ -45,7 +45,11 @@
           "AUD": "AUDAustralian Dollar",
           "SGD": "SGDSingapore Dollar",
           "CAD": "CADCanadian Dollar",
-          "THB": "THBThai Baht"
+          "THB": "THBThai Baht",
+          "PLN": "PLNPolish New Zloty",
+          "HUF": "HUFHungary Forint",
+          "CZK": "CZKCzech Koruna",
+          "DKK": "DKKDanish Krone"
         }
     }
 }
