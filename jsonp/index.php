@@ -25,7 +25,7 @@ $list = array('visa', 'mastercard');
 
 foreach($list as $int_org) {
 
-    $sql = "SELECT * FROM `paywhich` WHERE `int_org` = ? ORDER BY `created_at` DESC LIMIT 12";
+    $sql = "SELECT * FROM `paywhich` WHERE `int_org` = ? ORDER BY `created_at` DESC LIMIT 16";
     $sth = $link->prepare($sql);
     $sth->execute(array($int_org));
 
