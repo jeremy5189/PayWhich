@@ -45,9 +45,9 @@ var url	= config.visa.protocal + '://' +
 
 console.log("============= PayWhich VISA currency tool =============");
 console.log('\nTarget date: ' + target_date);
+console.log('Query Curreny: ' + base_currency);
 
 if(_debug) {
-    console.log('Query Curreny: ' + base_currency);
     console.log('\nGET Query: ');
     console.log(url);
     console.log("----------------");
