@@ -28,6 +28,7 @@ module.exports = {
     request: function(protocal, options, data, callback) {
 
         var https = require(protocal);
+        
         var req  = https.request(options, function(res) {
             res.setEncoding('utf8');
             res.on('data', function(chunk) {

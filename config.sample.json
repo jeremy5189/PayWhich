@@ -17,7 +17,7 @@
         "port": 443,
         "host": "www.mastercard.com",
         "path": "/psder/eu/callPsder.do",
-        "user_agent": ""
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36"
     },
     "visa": {
         "protocal": "https",
