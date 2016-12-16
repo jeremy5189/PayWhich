@@ -12,6 +12,7 @@
 var config  = require('./config.json'),
 	request = require('./request.js'),
 	moment  = require('moment'),
+	_debug  = false,
 	base_currency = 'EUR';
 
 // Check arg 1: minus_day
