@@ -1,6 +1,6 @@
-/* -----------------------------------------------------------
+/* ----------------------------------------------------------
  *
- *  PayWhich VISA Currency Bot - PhantomJS Headless Version
+ *  PayWhich VISA Currency Bot - w3m Version
  *  Author: Jeremy Yen (jeremy5189@gmail.com)
  *  License: MIT
  *  Repo: https://github.com/jeremy5189/payWhich
@@ -10,33 +10,15 @@
  */
 
 var config  = require('./config.json'),
-    curl    = require('./request.js'),
-    moment  = require('moment'),
-    _debug  = false,
-    options = {
-        host: config.visa.host,
-        port: config.visa.port,
-        path: config.visa.path,
-        method: 'GET',
-    	headers: {
-            'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Encoding': 'deflate',
-            'Accept-Language': 'zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4,zh-CN;q=0.2,nb;q=0.2',
-            'Cache-Control'  : 'no-cache',
-            'Connection':      'keep-alive',
-            'Host':            'usa.visa.com',
-            'Pragma':          'no-cache',
-            'User-Agent':      config.visa.user_agent,
-    	}
-    };
+	request = require('./request.js'),
+	moment  = require('moment'),
+	base_currency = 'EUR';
 
 // Check arg 1: minus_day
 if( process.argv[2] == undefined || isNaN(parseInt(process.argv[2])) ) {
     console.log('Usage: nodejs visa.js [minus_day] [base_currency] {-v}');
     process.exit(0);
 }
-
-var base_currency = 'EUR';
 
 // Check arg 2: base_currency
 if( process.argv[3] != undefined )
@@ -55,25 +37,31 @@ var target_date = moment().subtract(parseInt(process.argv[2]), 'days').format('M
                 'submitButton.y=16&' +
                 'submitButton=Calculate+Exchange+Rates';
 
-options.path += get_data;
+var url	= config.visa.protocal + '://' +
+		  config.visa.host + 
+		  config.visa.path +
+		  get_data;
 
 console.log("============= PayWhich VISA currency tool =============");
 console.log('\nTarget date: ' + target_date);
 
 if(_debug) {
     console.log('Query Curreny: ' + base_currency);
-    console.log('\nHTTP options: ');
-    console.log(options);
+    console.log('\nGET Query: ');
+    console.log(url);
+    console.log("----------------");
 }
 
-curl.ping(config.visa.protocal, options, function(ret) {
+request.w3m(config.w3m_bin, url, function(output) {
 
-    if(_debug)
-        console.log(ret);
+	if(_debug) {
+		console.log(output);
+		console.log("----------------");
+	}
 
-    var NTD, m, re = /.* = <strong>([0-9]*\.[0-9]+|[0-9]+).*/;
+	var NTD, m, re = /.* = ([0-9]*\.[0-9]+|[0-9]+).*/;
 
-    if ((m = re.exec(ret)) !== null) {
+    if ((m = re.exec(output)) !== null) {
         if (m.index === re.lastIndex) {
             re.lastIndex++;
         }

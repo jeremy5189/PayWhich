@@ -5,8 +5,10 @@ The back-end tool for [PayWhich.pw](http://PayWhich.pw). This tool will retrive 
 ## Features
 
 1. Command line tool to retrive VISA currency
-    - ``visa.js``
-    - ``visa-headless.js`` (with PhantomJS headless browser)
+    - <del>``visa.js``</del>
+    - <del>``visa-headless.js`` (with PhantomJS headless browser)</del>
+    - (2016.12.17 Updates, the above file no longer working)
+    - visa-w3m.js
 2. Command line tool to retrive MasterCard currency
     - ``master.js``
 3. Command line tool to retrive JCB currency
@@ -45,5 +47,5 @@ For day offset. VISA can be set to 0 (They offser currency exchange rate everyda
 
 ## Setting up crontab
 
-    node crontab-gen.js [--headless] [--nocron]
+    node crontab-gen.js [--nocron]
 
