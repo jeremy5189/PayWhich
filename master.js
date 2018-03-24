@@ -23,7 +23,8 @@ var config  = require('./config.json'),
           "Referer"       : "https://www.mastercard.us/en-us/consumers/get-support/convert-currency.html",
     	  "Accept"        : "application/json, text/plain, */*",
           "User-Agent"    : config.master.user_agent
-    	}
+        },
+        rejectUnauthorized: false,
     };
 
 // Check arg 1: minus_day
