@@ -1,6 +1,6 @@
 ## PayWhich Currency Tool
 
-The back-end tool for [PayWhich.pw](http://PayWhich.pw). This tool will retrive the selected currency exchange rate with the base currency of NTD from international credit card organizations. Currently supporting VISA, Mastercard and JCB.
+The back-end tool for [paywhich.patricks.tw](http://paywhich.patricks.tw). This tool will retrive the selected currency exchange rate with the base currency of NTD from international credit card organizations. Currently supporting VISA, Mastercard and JCB.
 
 ## Features
 

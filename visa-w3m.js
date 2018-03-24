@@ -4,7 +4,7 @@
  *  Author: Jeremy Yen (jeremy5189@gmail.com)
  *  License: MIT
  *  Repo: https://github.com/jeremy5189/payWhich
- *  Production: http://paywhich.pw
+ *  Production: http://paywhich.patricks.tw
  *
  * -----------------------------------------------------------
  */
